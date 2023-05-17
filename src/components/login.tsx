@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {StyleSheet, View, Text, TextInput, Pressable} from 'react-native';
+import {StyleSheet, View, Text, TextInput, Pressable,Image} from 'react-native';
 
 const Login = ({navigation}) => {
   const [name, getName] = useState('');
@@ -19,9 +19,19 @@ const Login = ({navigation}) => {
               alignItems: 'center',
               flexDirection: 'column',
             }}>
+              <View>
+          
+          <Image
+          style={{
+            maxHeight:70,
+            maxWidth:147,
+          }}
+          source={require('../assets/Logo.png')}/>
+        </View>
             <Text
               style={{
                 fontSize: 50,
+                fontWeight:600,
                 justifyContent: 'center',
                 alignItems: 'center',
                 color: '#662D8C',
@@ -31,6 +41,7 @@ const Login = ({navigation}) => {
             <Text
               style={{
                 fontSize: 50,
+                fontWeight:600,
                 justifyContent: 'center',
                 alignItems: 'center',
                 color: '#662D8C',
@@ -39,9 +50,11 @@ const Login = ({navigation}) => {
               CALCULATOR
             </Text>
           </View>
+          
           <View style={style.namebox}>
             <TextInput
               style={style.name}
+              placeholder='  Name'
               onChangeText={value => getName(value)}>
             </TextInput>
           </View>
@@ -88,6 +101,7 @@ const style = StyleSheet.create({
     borderColor: 'white',
     fontSize: 30,
     color: 'black',
+    padding:20
   },
   button: {
     padding: 10,
