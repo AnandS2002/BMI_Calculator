@@ -28,11 +28,11 @@ const list = ({route} = {route: any}) => {
             }}>
             List
           </Text>
-          <View>
+          {/* <View>
             <TouchableOpacity>
             <Image source={require('../assets/refresh.png')} />
             </TouchableOpacity>
-          </View>
+          </View> */}
           
         </View>
         <View style={{
