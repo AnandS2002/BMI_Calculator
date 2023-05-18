@@ -76,7 +76,7 @@ const details = ({route}: {route: any}) => {
                 BMI{'     '}:
                 <Text style={{fontSize: 25, fontWeight: '400', color: 'white'}}>
                   {'     '}
-                  {route.params.item.bmi.toFixed(4)}
+                  {route.params.item.bmi}
                 </Text>
               </Text>
             </View>

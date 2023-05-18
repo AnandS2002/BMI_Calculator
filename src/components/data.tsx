@@ -41,7 +41,7 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
     console.log(gender);
     const w = parseInt(weight);
     const h = parseInt(height);
-    bmi = w / ((h / 100) * (h / 100));
+    bmi= (w / ((h / 100) * (h / 100))).toFixed(5);
     console.log(bmi);
     navigation.navigate('Result', {bmi});
   };

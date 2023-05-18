@@ -83,6 +83,7 @@ const list = ({route, navigation}: {route: any; navigation: any}) => {
           <SafeAreaView
             style={{borderWidth: 1, borderRadius: 10, borderColor: 'silver'}}>
             <FlatList
+            
               style={style.item}
               data={newList}
               renderItem={({item}) => (
