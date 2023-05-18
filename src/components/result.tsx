@@ -19,11 +19,13 @@ function displayy(bmi) {
         </Text>
         <View>
           <Text
-          style={{
-            color: 'blue',
-            fontSize: 25,
-            fontWeight: 500,
-          }}>>YOU ARE UNDER WEIGHT !!</Text>
+            style={{
+              color: 'blue',
+              fontSize: 25,
+              fontWeight:'800',
+            }}>
+            YOU ARE UNDER WEIGHT !!
+          </Text>
         </View>
       </View>
     );
@@ -46,7 +48,7 @@ function displayy(bmi) {
             style={{
               color: 'green',
               fontSize: 25,
-              fontWeight: 500,
+              fontWeight: '800',
             }}>
             YOU ARE HEALTHY ✨✨
           </Text>
@@ -72,7 +74,7 @@ function displayy(bmi) {
             style={{
               color: 'white',
               fontSize: 25,
-              fontWeight: 400,
+              fontWeight: '800',
             }}>
             YOU ARE OVER WEIGHT 🚨🚨
           </Text>

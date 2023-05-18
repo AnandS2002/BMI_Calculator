@@ -104,13 +104,14 @@ const style = StyleSheet.create({
     padding:20
   },
   button: {
-    padding: 10,
-    borderWidth: 1,
+    padding: 20,
+    borderWidth:.5,
+    borderColor:'white',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 15,
     backgroundColor: '#662D8C',
-    elevation: 30,
+    elevation:10,
     shadowColor: '#ED1E79',
   },
 });

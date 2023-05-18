@@ -9,6 +9,7 @@ import Login from './src/components/login';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {StatusBar} from 'react-native';
 import list from './src/components/list';
+import details from './src/components/details';
 const App = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -22,6 +23,7 @@ const App = () => {
           <Stack.Screen name="Home" component={YourApp} />
           <Stack.Screen name="List" component={list} />
           <Stack.Screen name="Result" component={result} />
+          <Stack.Screen name="Details" component={details} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

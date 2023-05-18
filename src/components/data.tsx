@@ -49,7 +49,11 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
     const list=[]
     list.push({
       name:name,
-      bmi:bmi
+      bmi:bmi,
+      gender:gender,
+      height:height,
+      weight:weight,
+      age:age
      
     })
     console.log(list) ;
