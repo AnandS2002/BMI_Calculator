@@ -14,7 +14,7 @@ const Login = ({navigation}: {navigation: any}) => {
   const [name, getName] = useState('');
   const [password,getPassWord]=useState('');
   function passname() {
-    navigation.navigate('Home', {name,password});
+    navigation.navigate('Data', {name,password});
   }
   return (
     <KeyboardAwareScrollView contentContainerStyle={style.body}>
