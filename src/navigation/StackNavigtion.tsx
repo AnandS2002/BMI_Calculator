@@ -7,15 +7,14 @@ import Result from '../components/result';
 import Login from '../components/login';
 import List from '../components/list';
 import Details from '../components/details';
-import HomePage from '../components/home';
 
 const MainStackNavigation = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false,
+      
+        headerShown:false,
       }} initialRouteName='Login'>
-      {/* <Stack.Screen name="Home" component={HomePage}/> */}
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Data" component={YourApp} />
       <Stack.Screen name="List" component={List} />

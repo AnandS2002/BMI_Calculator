@@ -29,8 +29,8 @@ const Welcome = (props: {
 };
 
 const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
-  // const [name, setName] = useState(route.params.name);
-  // const [password,getPassWord]=useState(route.params.password);
+  const [name, setName] = useState(route.params.name);
+  const [password,getPassWord]=useState(route.params.password);
   const [age, setAge] = useState(2);
   const [height, getHeight] = useState('');
   const [weight, getWeight] = useState('');
@@ -50,7 +50,7 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
   function list() {
     const list = [];
     list.push({
-      name: 'name',
+      name: name,
       bmi: bmi,
       gender: gender,
       height: height,
@@ -86,7 +86,7 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
               </View>
             </TouchableOpacity>
           </View>
-          <Welcome welcom={'name'} />
+          <Welcome welcom={name} />
         </View>
         <Text style={style.text}>What you are?</Text>
         <View style={style.genderbox}>

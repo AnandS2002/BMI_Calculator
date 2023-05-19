@@ -10,7 +10,6 @@ const App = () => {
     <SafeAreaView style={{flex: 1}}>
       <StatusBar barStyle={'default'} backgroundColor={'black'} />
       <NavigationContainer>
-        {/* <MainStackNavigation /> */}
         <DrawerNavigation/>
       </NavigationContainer>
     </SafeAreaView>
