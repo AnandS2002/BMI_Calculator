@@ -83,7 +83,7 @@ function displayy(bmi) {
     );
   }
 }
-const result = ({route}: {route: any}) => {
+const Result = ({route}: {route: any}) => {
   const [bmi, getBmi] = useState(route.params.bmi);
   return (
     <View style={{flex: 1}}>
@@ -123,4 +123,4 @@ const style = StyleSheet.create({
     flex: 1,
   },
 });
-export default result;
+export default Result;

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import 'react-native-gesture-handler';
 import {
   Button,
   FlatList,
@@ -29,6 +30,7 @@ const Welcome = (props: {
 
 const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
   const [name, setName] = useState(route.params.name);
+  const [password,getPassWord]=useState(route.params.password);
   const [age, setAge] = useState(2);
   const [height, getHeight] = useState('');
   const [weight, getWeight] = useState('');
@@ -41,24 +43,22 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
     console.log(gender);
     const w = parseInt(weight);
     const h = parseInt(height);
-    bmi= (w / ((h / 100) * (h / 100))).toFixed(5);
+    bmi = (w / ((h / 100) * (h / 100))).toFixed(5);
     console.log(bmi);
     navigation.navigate('Result', {bmi});
-  };
-  function list(){
-    const list=[]
+  }
+  function list() {
+    const list = [];
     list.push({
-      name:name,
-      bmi:bmi,
-      gender:gender,
-      height:height,
-      weight:weight,
-      age:age
-     
-    })
-    console.log(list) ;
-    navigation.navigate('List',{list})
-
+      name: name,
+      bmi: bmi,
+      gender: gender,
+      height: height,
+      weight: weight,
+      age: age,
+    });
+    console.log(list);
+    navigation.navigate('List', {list});
   }
   return (
     <KeyboardAwareScrollView style={style.body}>
@@ -70,16 +70,20 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
               flex: 1,
               flexDirection: 'row',
               alignItems: 'center',
+              justifyContent: 'space-between',
             }}>
+              <TouchableOpacity>
             <View>
-              <Text style={style.headingtext}>BMI Calculator      </Text>
+              <Image source={require('../assets/menu.png')} />
             </View>
-            <TouchableOpacity
-            onPress={list}>
+            </TouchableOpacity>
             <View>
-              <Image source={require('../assets/list.png')}
-               />
+              <Text style={style.headingtext}>BMI Calculator </Text>
             </View>
+            <TouchableOpacity onPress={list}>
+              <View>
+                <Image source={require('../assets/list.png')} />
+              </View>
             </TouchableOpacity>
           </View>
           <Welcome welcom={name} />
@@ -195,10 +199,10 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   headingtext: {
-    textAlign: 'center',
+    textAlign: 'justify',
     color: 'orange',
     fontSize: 40,
-    // backgroundColor:'yellow'
+    padding:15,
   },
   genderbox: {
     paddingBottom: 20,

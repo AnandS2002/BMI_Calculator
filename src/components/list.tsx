@@ -20,7 +20,7 @@ const showDetails = ({item, navigation}: {item: any; navigation: any}) => {
   console.log(detailedList);
   navigation.navigate('Details', {item});
 };
-const list = ({route, navigation}: {route: any; navigation: any}) => {
+const List = ({route, navigation}: {route: any; navigation: any}) => {
   console.log(JSON.stringify(route.params.list));
   const [details, getList] = useState(route.params.list);
   // const [detailedList,getDetails]=useState([]);
@@ -145,4 +145,4 @@ const style = StyleSheet.create({
     borderRadius: 20,
   },
 });
-export default list;
+export default List;

@@ -4,12 +4,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 import YourApp from './src/components/data';
-import result from './src/components/result';
+import Result from './src/components/result';
 import Login from './src/components/login';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {StatusBar} from 'react-native';
-import list from './src/components/list';
-import details from './src/components/details';
+import List from './src/components/list';
+import Details from './src/components/details';
 const App = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -21,11 +21,11 @@ const App = () => {
           }}>
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Home" component={YourApp} />
-          <Stack.Screen name="List" component={list} />
-          <Stack.Screen name="Result" component={result} />
-          <Stack.Screen name="Details" component={details} />
+          <Stack.Screen name="List" component={List} />
+          <Stack.Screen name="Result" component={Result} />
+          <Stack.Screen name="Details" component={Details} />
         </Stack.Navigator>
-      </NavigationContainer>
+        </NavigationContainer>
     </SafeAreaView>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-const details = ({route}: {route: any}) => {
+const Details = ({route}: {route: any}) => {
   console.log(route.params.item.id);
   return (
     <View style={{flex: 1, display: 'flex', flexDirection: 'column'}}>
@@ -92,4 +92,4 @@ const style = StyleSheet.create({
     flex: 1,
   },
 });
-export default details;
+export default Details;
