@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Button,
   FlatList,
@@ -27,24 +28,50 @@ const Welcome = (props: {
 }) => {
   return <Text style={style.text}>Hello ,{props.welcom} 👋</Text>;
 };
+let username ;
 
-const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
-  const [name, setName] = useState(route.params.name);
-  const [password,getPassWord]=useState(route.params.password);
+
+
+const YourApp = ({ navigation}: { navigation: any}) => {
+  const [name, setName] = useState('');
+  const [password,getPassWord]=useState('');
   const [age, setAge] = useState(2);
   const [height, getHeight] = useState('');
   const [weight, getWeight] = useState('');
   const [gender, setGender] = useState('');
   var bmi;
+  const [username, setUsername] = useState(null);
+
+  
   const simpleAlert = () => {
     Alert.alert('Calculating your BMI...');
   };
+  
+  useEffect(() => {
+    const retrieveData = async()=>{
+      try {
+        const value = await AsyncStorage.getItem('username');
+        const value2=await AsyncStorage.getItem('password');
+        if (value !== null) {
+          console.log('Retrieved data: ', value);
+          setUsername(value); 
+          getPassWord(value2);// Store the retrieved data in the component's state
+        }
+      } catch (error) {
+        console.log('Error retrieving data: ', error);
+      }
+    };
+    retrieveData();
+  }, []);
+ 
+  console.log(password);
   function calculate() {
     console.log(gender);
     const w = parseInt(weight);
     const h = parseInt(height);
     bmi = (w / ((h / 100) * (h / 100))).toFixed(5);
     console.log(bmi);
+    
     navigation.navigate('Result', {bmi});
   }
   function list() {
@@ -86,7 +113,8 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
               </View>
             </TouchableOpacity>
           </View>
-          <Welcome welcom={name} />
+          <Welcome welcom={username} />
+          
         </View>
         <Text style={style.text}>What you are?</Text>
         <View style={style.genderbox}>

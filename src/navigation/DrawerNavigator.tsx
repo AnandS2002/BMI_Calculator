@@ -14,7 +14,8 @@ const DrawerNavigation = () => {
         },
       }}>
       <Drawer.Screen name="Home" component={HomePage} />
-      <Drawer.Screen name="Login" component={MainStackNavigation} />
+      <Drawer.Screen name="Login" component={MainStackNavigation} options={{headerShown:false
+      }} />
 
       {/* <Drawer.Screen name="Home" component={YourApp}/> */}
     </Drawer.Navigator>

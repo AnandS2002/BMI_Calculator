@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {
   StyleSheet,
   View,
@@ -8,13 +10,33 @@ import {
   TextInput,
   Pressable,
   Image,
+  Alert
 } from 'react-native';
 
 const Login = ({navigation}: {navigation: any}) => {
   const [name, getName] = useState('');
   const [password,getPassWord]=useState('');
-  function passname() {
-    navigation.navigate('Data', {name,password});
+  const passname=async()=> {
+    try {
+      await AsyncStorage.setItem('username',name);
+      await AsyncStorage.setItem('password',password);
+      const val1= await AsyncStorage.getItem('user')
+      const val2= await AsyncStorage.getItem('pass');
+      console.log(val1);
+      console.log(val2);
+
+      if(val1==name && val2==password)
+      {
+      Alert.alert('You are Logged In')
+      navigation.navigate('Data');
+      }
+      else{
+        Alert.alert('Wrong Credentials');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+   
   }
   return (
     <KeyboardAwareScrollView contentContainerStyle={style.body}>
