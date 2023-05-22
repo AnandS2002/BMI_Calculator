@@ -31,15 +31,12 @@ const SignUp = ({navigation}: {navigation: any}) => {
 
         if (userExists) {
           Alert.alert('Username Already Exist');
-          console.log(
-            'User already exists. Cannot store duplicate user credentials.',
-          );
+
           return;
         } else {
           Alert.alert('Successfully Registered');
         }
       }
-      console.log(existingUsers);
       users.push({username, pass});
       navigation.navigate('Login');
 
@@ -84,7 +81,15 @@ const SignUp = ({navigation}: {navigation: any}) => {
               secureTextEntry={true}
               onChangeText={value => getConfirmPass(value)}></TextInput>
           </View>
+          <View style={style.header}>
+            <Text
+              style={{fontSize: 18}}
+              onPress={() => navigation.navigate('Login')}>
+              Already have an account?
+            </Text>
+          </View>
         </View>
+
         <View style={style.buttonbox}>
           <Pressable style={style.button}>
             <Text style={style.headertext} onPress={storeUserCredentials}>
@@ -105,6 +110,7 @@ const style = StyleSheet.create({
     maxWidth: 107,
   },
   header: {
+    padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -130,7 +136,7 @@ const style = StyleSheet.create({
     padding: 15,
     margin: 10,
   },
-  buttonbox: {alignItems: 'center', justifyContent: 'center', padding: 40},
+  buttonbox: {alignItems: 'center', justifyContent: 'center', padding: 20},
   button: {
     padding: 15,
     borderWidth: 0.5,

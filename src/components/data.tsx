@@ -31,7 +31,7 @@ const Welcome = (props: {
 let username;
 
 const YourApp = ({navigation}: {navigation: any}) => {
-  const [name, setName] = useState('');
+  // const [name, setName] = useState('');
   const [password, getPassWord] = useState('');
   const [age, setAge] = useState(2);
   const [height, getHeight] = useState('');
@@ -74,7 +74,7 @@ const YourApp = ({navigation}: {navigation: any}) => {
   function list() {
     const list = [];
     list.push({
-      name: name,
+      name: username,
       bmi: bmi,
       gender: gender,
       height: height,
@@ -96,23 +96,18 @@ const YourApp = ({navigation}: {navigation: any}) => {
               alignItems: 'center',
               justifyContent: 'space-between',
             }}>
-            <TouchableOpacity>
-              <View>
-                <Image source={require('../assets/menu.png')} />
-              </View>
-            </TouchableOpacity>
             <View>
               <Text style={style.headingtext}>BMI Calculator </Text>
             </View>
             <TouchableOpacity onPress={list}>
               <View>
-                <Image source={require('../assets/list.png')} />
+                <Image source={require('../assets/menu.png')} />
               </View>
             </TouchableOpacity>
           </View>
           <Welcome welcom={username} />
         </View>
-        <Text style={style.text}>What you are?</Text>
+        <Text style={style.text}>{'\t\t'}What you are?</Text>
         <View style={style.genderbox}>
           <TouchableOpacity onPress={() => setGender('Male')}>
             <View style={style.male}>
@@ -141,7 +136,7 @@ const YourApp = ({navigation}: {navigation: any}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <Text style={style.text}>What's your age?</Text>
+          <Text style={style.text}>{'\t\t'}What's your age?</Text>
           <View>
             <View style={style.agebox}>
               <Text style={style.age}>{age > 1 ? age : 1}</Text>
@@ -186,7 +181,7 @@ const YourApp = ({navigation}: {navigation: any}) => {
           </View>
         </View>
         <Pressable style={style.button} onPress={calculate}>
-          <Text>Find</Text>
+          <Text style={style.text}>Find</Text>
         </Pressable>
       </LinearGradient>
     </KeyboardAwareScrollView>
@@ -226,6 +221,7 @@ const style = StyleSheet.create({
     textAlign: 'justify',
     color: 'orange',
     fontSize: 40,
+    fontWeight: 'bold',
     padding: 15,
   },
   genderbox: {

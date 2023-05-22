@@ -20,17 +20,36 @@ const Login = ({navigation}: {navigation: any}) => {
     try {
       await AsyncStorage.setItem('username', name);
       await AsyncStorage.setItem('password', password);
-      const val1 = await AsyncStorage.getItem('user');
-      const val2 = await AsyncStorage.getItem('pass');
-      console.log(val1);
-      console.log(val2);
 
-      if (val1 == name && val2 == password) {
-        Alert.alert('You are Logged In');
-        navigation.navigate('Data');
+      const existingUsers = await AsyncStorage.getItem('users');
+      console.log(existingUsers);
+      if (existingUsers) {
+        // If there are existing users, parse the JSON and find the matching user
+        const users = JSON.parse(existingUsers);
+
+        const matchedUser = users.find(user => user.username == name);
+        console.log(matchedUser);
+
+        if (matchedUser) {
+          Alert.alert('You are Logged In');
+          navigation.navigate('Data');
+          // console.log('User credentials are valid. User is authenticated.');
+        } else {
+          Alert.alert('Wrong Credentials');
+          console.log('Invalid username or password. Authentication failed.');
+          return;
+        }
       } else {
-        Alert.alert('Wrong Credentials');
+        Alert.alert('User Not Registered');
+
+        console.log('No registered users found. Authentication failed.');
       }
+      // if (val1 == name && val2 == password) {
+      //   Alert.alert('You are Logged In');
+      //   navigation.navigate('Data');
+      // } else {
+      //   Alert.alert('Wrong Credentials');
+      // }
     } catch (error) {
       console.log(error);
     }
@@ -58,21 +77,21 @@ const Login = ({navigation}: {navigation: any}) => {
           </View>
           <Text
             style={{
-              fontSize: 50,
+              fontSize: 40,
               fontWeight: 600,
               justifyContent: 'center',
               alignItems: 'center',
-              color: '#662D8C',
+              color: '#fff',
             }}>
             BMI
           </Text>
           <Text
             style={{
-              fontSize: 50,
+              fontSize: 40,
               fontWeight: 600,
               justifyContent: 'center',
               alignItems: 'center',
-              color: '#662D8C',
+              color: '#fff',
             }}>
             {' '}
             CALCULATOR

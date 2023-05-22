@@ -9,7 +9,7 @@ import List from '../components/list';
 import Details from '../components/details';
 import SignUp from '../components/signup';
 
-const MainStackNavigation = () => {
+export const MainStackNavigation = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -24,17 +24,15 @@ const MainStackNavigation = () => {
     </Stack.Navigator>
   );
 };
-const LoginStackNavigation=()=>{
-  return(
+export const LoginStackNavigation = () => {
+  return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}
       initialRouteName="SignUp">
-        <Stack.Screen name="SignUp" component={SignUp}/>
-        <Stack.Screen name="Login"  component={MainStackNavigation}/>
-      </Stack.Navigator>
-  )
-}
-
-export default LoginStackNavigation;
+      <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="Login" component={MainStackNavigation} />
+    </Stack.Navigator>
+  );
+};

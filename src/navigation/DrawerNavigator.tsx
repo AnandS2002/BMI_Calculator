@@ -2,7 +2,8 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomePage from '../components/home';
-import LoginStackNavigation from './StackNavigtion';
+import {LoginStackNavigation, MainStackNavigation} from './StackNavigtion';
+
 import SignUp from '../components/signup';
 
 const Drawer = createDrawerNavigator();
@@ -18,6 +19,11 @@ const DrawerNavigation = () => {
       <Drawer.Screen
         name="Sign Up"
         component={LoginStackNavigation}
+        options={{headerShown: false}}
+      />
+      <Drawer.Screen
+        name="Login"
+        component={MainStackNavigation}
         options={{headerShown: false}}
       />
 
