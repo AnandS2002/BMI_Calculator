@@ -10,38 +10,34 @@ import {
   TextInput,
   Pressable,
   Image,
-  Alert
+  Alert,
 } from 'react-native';
 
 const Login = ({navigation}: {navigation: any}) => {
   const [name, getName] = useState('');
-  const [password,getPassWord]=useState('');
-  const passname=async()=> {
+  const [password, getPassWord] = useState('');
+  const passname = async () => {
     try {
-      await AsyncStorage.setItem('username',name);
-      await AsyncStorage.setItem('password',password);
-      const val1= await AsyncStorage.getItem('user')
-      const val2= await AsyncStorage.getItem('pass');
+      await AsyncStorage.setItem('username', name);
+      await AsyncStorage.setItem('password', password);
+      const val1 = await AsyncStorage.getItem('user');
+      const val2 = await AsyncStorage.getItem('pass');
       console.log(val1);
       console.log(val2);
 
-      if(val1==name && val2==password)
-      {
-      Alert.alert('You are Logged In')
-      navigation.navigate('Data');
-      }
-      else{
+      if (val1 == name && val2 == password) {
+        Alert.alert('You are Logged In');
+        navigation.navigate('Data');
+      } else {
         Alert.alert('Wrong Credentials');
       }
     } catch (error) {
       console.log(error);
     }
-   
-  }
+  };
   return (
     <KeyboardAwareScrollView contentContainerStyle={style.body}>
       <LinearGradient colors={['#ED1E79', '#662D8C']} style={style.gradient}>
-        {/* <View style={style.bodycontent}> */}
         <View
           style={{
             padding: 20,
@@ -110,7 +106,6 @@ const Login = ({navigation}: {navigation: any}) => {
             </Text>
           </Pressable>
         </View>
-        {/* </View> */}
       </LinearGradient>
     </KeyboardAwareScrollView>
   );

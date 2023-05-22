@@ -22,7 +22,7 @@ function displayy(bmi) {
             style={{
               color: 'blue',
               fontSize: 25,
-              fontWeight:'800',
+              fontWeight: '800',
             }}>
             YOU ARE UNDER WEIGHT !!
           </Text>

@@ -7,14 +7,15 @@ import Result from '../components/result';
 import Login from '../components/login';
 import List from '../components/list';
 import Details from '../components/details';
+import SignUp from '../components/signup';
 
 const MainStackNavigation = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-      
-        headerShown:false,
-      }} initialRouteName='Login'>
+        headerShown: false,
+      }}
+      initialRouteName="Login">
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Data" component={YourApp} />
       <Stack.Screen name="List" component={List} />
@@ -23,13 +24,17 @@ const MainStackNavigation = () => {
     </Stack.Navigator>
   );
 };
+const LoginStackNavigation=()=>{
+  return(
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="SignUp">
+        <Stack.Screen name="SignUp" component={SignUp}/>
+        <Stack.Screen name="Login"  component={MainStackNavigation}/>
+      </Stack.Navigator>
+  )
+}
 
-// export const  LogoutNavigation =()=>{
-//   return(
-//     <Stack.Navigator>
-//       {/* <Stack.Screen name="Home" component={YourApp}/> */}
-//       <Stack.Screen name="Login" component={Result}/>
-//     </Stack.Navigator>
-//   );
-// };
-export default MainStackNavigation;
+export default LoginStackNavigation;

@@ -28,13 +28,11 @@ const Welcome = (props: {
 }) => {
   return <Text style={style.text}>Hello ,{props.welcom} 👋</Text>;
 };
-let username ;
+let username;
 
-
-
-const YourApp = ({ navigation}: { navigation: any}) => {
+const YourApp = ({navigation}: {navigation: any}) => {
   const [name, setName] = useState('');
-  const [password,getPassWord]=useState('');
+  const [password, getPassWord] = useState('');
   const [age, setAge] = useState(2);
   const [height, getHeight] = useState('');
   const [weight, getWeight] = useState('');
@@ -42,20 +40,19 @@ const YourApp = ({ navigation}: { navigation: any}) => {
   var bmi;
   const [username, setUsername] = useState(null);
 
-  
   const simpleAlert = () => {
     Alert.alert('Calculating your BMI...');
   };
-  
+
   useEffect(() => {
-    const retrieveData = async()=>{
+    const retrieveData = async () => {
       try {
         const value = await AsyncStorage.getItem('username');
-        const value2=await AsyncStorage.getItem('password');
+        const value2 = await AsyncStorage.getItem('password');
         if (value !== null) {
           console.log('Retrieved data: ', value);
-          setUsername(value); 
-          getPassWord(value2);// Store the retrieved data in the component's state
+          setUsername(value);
+          getPassWord(value2); // Store the retrieved data in the component's state
         }
       } catch (error) {
         console.log('Error retrieving data: ', error);
@@ -63,7 +60,7 @@ const YourApp = ({ navigation}: { navigation: any}) => {
     };
     retrieveData();
   }, []);
- 
+
   console.log(password);
   function calculate() {
     console.log(gender);
@@ -71,7 +68,7 @@ const YourApp = ({ navigation}: { navigation: any}) => {
     const h = parseInt(height);
     bmi = (w / ((h / 100) * (h / 100))).toFixed(5);
     console.log(bmi);
-    
+
     navigation.navigate('Result', {bmi});
   }
   function list() {
@@ -99,10 +96,10 @@ const YourApp = ({ navigation}: { navigation: any}) => {
               alignItems: 'center',
               justifyContent: 'space-between',
             }}>
-              <TouchableOpacity>
-            <View>
-              <Image source={require('../assets/menu.png')} />
-            </View>
+            <TouchableOpacity>
+              <View>
+                <Image source={require('../assets/menu.png')} />
+              </View>
             </TouchableOpacity>
             <View>
               <Text style={style.headingtext}>BMI Calculator </Text>
@@ -114,7 +111,6 @@ const YourApp = ({ navigation}: { navigation: any}) => {
             </TouchableOpacity>
           </View>
           <Welcome welcom={username} />
-          
         </View>
         <Text style={style.text}>What you are?</Text>
         <View style={style.genderbox}>
@@ -230,7 +226,7 @@ const style = StyleSheet.create({
     textAlign: 'justify',
     color: 'orange',
     fontSize: 40,
-    padding:15,
+    padding: 15,
   },
   genderbox: {
     paddingBottom: 20,
