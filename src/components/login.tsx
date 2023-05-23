@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useFocusEffect} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -24,36 +25,32 @@ const Login = ({navigation}: {navigation: any}) => {
       const existingUsers = await AsyncStorage.getItem('users');
       console.log(existingUsers);
       if (existingUsers) {
-        // If there are existing users, parse the JSON and find the matching user
         const users = JSON.parse(existingUsers);
 
-        const matchedUser = users.find(user => user.username == name);
-        console.log(matchedUser);
+        const matchedUser = users.find(
+          user => user.username == name && user.pass == password,
+        );
 
         if (matchedUser) {
           Alert.alert('You are Logged In');
-          navigation.navigate('Data');
-          // console.log('User credentials are valid. User is authenticated.');
+          navigation.navigate('CurrentUser');
         } else {
           Alert.alert('Wrong Credentials');
-          console.log('Invalid username or password. Authentication failed.');
           return;
         }
       } else {
         Alert.alert('User Not Registered');
-
-        console.log('No registered users found. Authentication failed.');
       }
-      // if (val1 == name && val2 == password) {
-      //   Alert.alert('You are Logged In');
-      //   navigation.navigate('Data');
-      // } else {
-      //   Alert.alert('Wrong Credentials');
-      // }
     } catch (error) {
       console.log(error);
     }
   };
+  useFocusEffect(
+    React.useCallback(() => {
+      getName('');
+      getPassWord('');
+    }, []),
+  );
   return (
     <KeyboardAwareScrollView contentContainerStyle={style.body}>
       <LinearGradient colors={['#ED1E79', '#662D8C']} style={style.gradient}>
@@ -102,6 +99,7 @@ const Login = ({navigation}: {navigation: any}) => {
           <View>
             <TextInput
               style={style.name}
+              value={name}
               placeholder="  Name"
               onChangeText={value => getName(value)}></TextInput>
           </View>
@@ -110,18 +108,27 @@ const Login = ({navigation}: {navigation: any}) => {
             <TextInput
               style={style.name}
               placeholder="  Password"
+              value={password}
               secureTextEntry={true}
               onChangeText={value => getPassWord(value)}></TextInput>
           </View>
         </View>
-        <View style={{margin: 30, alignItems: 'center'}}>
+        <View
+          style={{padding: 10, justifyContent: 'center', alignItems: 'center'}}>
+          <Text
+            style={{fontSize: 18}}
+            onPress={() => navigation.navigate('SignUp')}>
+            Don't have an account?
+          </Text>
+        </View>
+        <View style={{padding: 20, alignItems: 'center'}}>
           <Pressable style={style.button} onPress={passname}>
             <Text
               style={{
                 fontSize: 20,
                 color: 'white',
               }}>
-              LOGIN 👉
+              LOGIN
             </Text>
           </Pressable>
         </View>
@@ -145,7 +152,6 @@ const style = StyleSheet.create({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    // justifyContent: 'space-around',
     alignItems: 'center',
   },
   namebox: {
@@ -164,7 +170,7 @@ const style = StyleSheet.create({
     padding: 20,
   },
   button: {
-    padding: 20,
+    padding: 15,
     borderWidth: 0.5,
     borderColor: 'white',
     justifyContent: 'center',

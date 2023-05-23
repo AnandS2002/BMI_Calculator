@@ -8,6 +8,8 @@ import Login from '../components/login';
 import List from '../components/list';
 import Details from '../components/details';
 import SignUp from '../components/signup';
+import CurrentUser from '../components/person';
+import HomePage from '../components/home';
 
 export const MainStackNavigation = () => {
   return (
@@ -16,7 +18,9 @@ export const MainStackNavigation = () => {
         headerShown: false,
       }}
       initialRouteName="Login">
+        <Stack.Screen name='SignUp' component={LoginStackNavigation}/>
       <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="CurrentUser" component={CurrentUser} />
       <Stack.Screen name="Data" component={YourApp} />
       <Stack.Screen name="List" component={List} />
       <Stack.Screen name="Result" component={Result} />

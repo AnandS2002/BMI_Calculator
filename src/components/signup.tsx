@@ -13,6 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomePage from './home';
 import Login from './login';
+import {useFocusEffect} from '@react-navigation/native';
 let cred = [];
 const SignUp = ({navigation}: {navigation: any}) => {
   const [username, getName] = useState('');
@@ -20,33 +21,43 @@ const SignUp = ({navigation}: {navigation: any}) => {
   const [confirmpass, getConfirmPass] = useState('');
   const storeUserCredentials = async () => {
     // await AsyncStorage.clear();
-    try {
-      const existingUsers = await AsyncStorage.getItem('users');
-      let users = [];
+    if (confirmpass === pass) {
+      try {
+        const existingUsers = await AsyncStorage.getItem('users');
+        let users = [];
 
-      if (existingUsers) {
-        // If there are existing users, parse the JSON and add them to the array
-        users = JSON.parse(existingUsers);
-        const userExists = users.some(user => user.username === username);
+        if (existingUsers) {
+          users = JSON.parse(existingUsers);
+          const userExists = users.some(user => user.username === username);
 
-        if (userExists) {
-          Alert.alert('Username Already Exist');
+          if (userExists) {
+            Alert.alert('Username Already Exist');
 
-          return;
-        } else {
-          Alert.alert('Successfully Registered');
+            return;
+          } else {
+            Alert.alert('Successfully Registered');
+          }
         }
-      }
-      users.push({username, pass});
-      navigation.navigate('Login');
+        users.push({username, pass});
+        navigation.navigate('Login');
 
-      // Store the updated array of users
-      await AsyncStorage.setItem('users', JSON.stringify(users));
-      console.log('User credentials stored successfully.');
-    } catch (error) {
-      console.log('Error storing user credentials:', error);
+        await AsyncStorage.setItem('users', JSON.stringify(users));
+        console.log('User credentials stored successfully.');
+      } catch (error) {
+        console.log('Error storing user credentials:', error);
+      }
+    } else {
+      Alert.alert('Please Confirm entered Password');
+      return;
     }
   };
+  useFocusEffect(
+    React.useCallback(() => {
+      getName('');
+      getPass('');
+      getConfirmPass('');
+    }, []),
+  );
   return (
     <LinearGradient colors={['#ED1E79', '#662D8C']} style={{flex: 1}}>
       <KeyboardAwareScrollView style={style.body}>
@@ -65,12 +76,14 @@ const SignUp = ({navigation}: {navigation: any}) => {
             <TextInput
               style={style.name}
               placeholder="  Name"
+              value={username}
               onChangeText={value => getName(value)}></TextInput>
           </View>
           <View>
             <TextInput
               style={style.name}
               placeholder="  Password"
+              value={pass}
               secureTextEntry={true}
               onChangeText={value => getPass(value)}></TextInput>
           </View>
@@ -78,6 +91,7 @@ const SignUp = ({navigation}: {navigation: any}) => {
             <TextInput
               style={style.name}
               placeholder=" Confirm Password"
+              value={confirmpass}
               secureTextEntry={true}
               onChangeText={value => getConfirmPass(value)}></TextInput>
           </View>

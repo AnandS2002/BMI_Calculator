@@ -1,5 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CurrentRenderContext} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,32 +11,26 @@ import {
   SafeAreaView,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-var newList = [];
-var detailedList: {id: any}[] = [];
 const showDetails = ({item, navigation}: {item: any; navigation: any}) => {
-  console.log(item);
-
-  // detailedList.
-
-  console.log(detailedList);
   navigation.navigate('Details', {item});
 };
-const List = ({route, navigation}: {route: any; navigation: any}) => {
-  console.log(JSON.stringify(route.params.list));
-  const [details, getList] = useState(route.params.list);
-  // const [detailedList,getDetails]=useState([]);
 
-  newList.push({
-    id: newList.length + 1,
-    name: details[0].name,
-    bmi: details[0].bmi,
-    gender: details[0].gender,
-    height: details[0].height,
-    weight: details[0].weight,
-    age: details[0].age,
-  });
+const List = ({navigation}: {navigation: any}) => {
+  const [newList, getnewList] = useState([]);
 
-  console.log(details[0].bmi);
+  useEffect(() => {
+    async function getList() {
+      console.log('outside');
+
+      const existingUsers = await AsyncStorage.getItem('userdetails');
+      if (existingUsers) {
+        console.log('inside');
+        const users = JSON.parse(existingUsers);
+        getnewList(users);
+      }
+    }
+    getList();
+  }, []);
   return (
     <View style={style.test}>
       <LinearGradient colors={['#ED1E79', '#662D8C']} style={style.gradient}>
@@ -105,7 +100,7 @@ const List = ({route, navigation}: {route: any; navigation: any}) => {
                           padding: 10,
                           marginVertical: 10,
                         }}>
-                        {item.name}
+                        {item.currentUserName}
                       </Text>
                     </View>
                     <View>

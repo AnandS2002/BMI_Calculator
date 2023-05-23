@@ -31,7 +31,7 @@ const Details = ({route}: {route: any}) => {
                 Name :
                 <Text style={{fontSize: 25, fontWeight: '400', color: 'white'}}>
                   {'     '}
-                  {route.params.item.name}
+                  {route.params.item.currentUserName}
                 </Text>
               </Text>
             </View>
@@ -79,6 +79,36 @@ const Details = ({route}: {route: any}) => {
                   {route.params.item.bmi}
                 </Text>
               </Text>
+            </View>
+            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+              {route.params.item.bmi < 18 ? (
+                <Text
+                  style={{
+                    color: 'blue',
+                    fontSize: 25,
+                    fontWeight: '800',
+                  }}>
+                  UNDERWEIGHT
+                </Text>
+              ) : route.params.item.bmi < 25 ? (
+                <Text
+                  style={{
+                    color: 'green',
+                    fontSize: 25,
+                    fontWeight: '800',
+                  }}>
+                  NORMAL
+                </Text>
+              ) : (
+                <Text
+                  style={{
+                    color: 'red',
+                    fontSize: 25,
+                    fontWeight: '800',
+                  }}>
+                  OVERWEIGHT
+                </Text>
+              )}
             </View>
           </View>
         </View>

@@ -4,8 +4,6 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomePage from '../components/home';
 import {LoginStackNavigation, MainStackNavigation} from './StackNavigtion';
 
-import SignUp from '../components/signup';
-
 const Drawer = createDrawerNavigator();
 const DrawerNavigation = () => {
   return (
@@ -26,8 +24,6 @@ const DrawerNavigation = () => {
         component={MainStackNavigation}
         options={{headerShown: false}}
       />
-
-      {/* <Drawer.Screen name="Home" component={YourApp}/> */}
     </Drawer.Navigator>
   );
 };

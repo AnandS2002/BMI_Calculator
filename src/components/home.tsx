@@ -9,7 +9,6 @@ const HomePage = () => {
       style={{
         flex: 1,
         justifyContent: 'center',
-        // alignItems:'center'
       }}>
       <LinearGradient colors={['#ED1E79', '#662D8C']} style={{flex: 1}}>
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -32,6 +31,23 @@ const HomePage = () => {
               BMI{'\n'}Calculator
             </Text>
           </View>
+        </View>
+        <View style={{flex: 1.5, padding: 30}}>
+          <Text
+            style={{
+              fontSize: 25,
+              color: 'aqua',
+              textAlign: 'center',
+              lineHeight: 40,
+            }}>
+            We're here to help you understand and track your Body Mass Index
+            (BMI) for better health and wellness. BMI is a measure that assesses
+            your body composition based on your weight and height.
+            {'\n\n'}
+          </Text>
+          <Text style={{fontSize: 35, textAlign: 'center', fontWeight: '700'}}>
+            Start your journey now
+          </Text>
         </View>
       </LinearGradient>
     </View>
