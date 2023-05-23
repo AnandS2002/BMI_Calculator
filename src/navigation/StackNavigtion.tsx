@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const Stack = createNativeStackNavigator();
+export const Stack = createNativeStackNavigator();
 import YourApp from '../components/data';
 import Result from '../components/result';
 import Login from '../components/login';
@@ -40,3 +40,4 @@ export const LoginStackNavigation = () => {
     </Stack.Navigator>
   );
 };
+
