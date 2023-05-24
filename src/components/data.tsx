@@ -40,6 +40,7 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
   const [currentUserName, getCurrentUser] = useState(
     route.params.currentUserName,
   );
+  const [profilepic, getPic] = useState(route.params.url);
   const [age, setAge] = useState(2);
   const [height, getHeight] = useState('');
   const [weight, getWeight] = useState('');
@@ -91,7 +92,15 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
           navigation.navigate('Result', {bmi});
         }
       }
-      list.push({currentUserName, bmi, gender, height, weight, age});
+      list.push({
+        currentUserName,
+        bmi,
+        gender,
+        height,
+        weight,
+        age,
+        profilepic,
+      });
 
       await AsyncStorage.setItem('userdetails', JSON.stringify(list));
     } catch (error) {
@@ -225,10 +234,10 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
             <Text style={style.unit}>kg</Text>
           </View>
         </View>
-        <View style={{padding:20}}>
-        <Pressable style={style.button} onPress={calculate}>
-          <Text style={style.text}>Find</Text>
-        </Pressable>
+        <View style={{padding: 20}}>
+          <Pressable style={style.button} onPress={calculate}>
+            <Text style={style.text}>Find</Text>
+          </Pressable>
         </View>
       </KeyboardAwareScrollView>
     </LinearGradient>
@@ -325,7 +334,7 @@ const style = StyleSheet.create({
     borderColor: 'pink',
   },
   agebutton: {
-    justifyContent:'space-around',
+    justifyContent: 'space-around',
     width: 50,
     marginRight: 70,
   },

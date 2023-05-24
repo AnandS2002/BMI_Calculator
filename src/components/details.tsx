@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Image} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 const Details = ({route}: {route: any}) => {
-  console.log(route.params.item.id);
+  console.log(route.params.item);
   return (
     <View style={{flex: 1, display: 'flex', flexDirection: 'column'}}>
       <LinearGradient colors={['#ED1E79', '#662D8C']} style={style.gradient}>
@@ -26,6 +26,25 @@ const Details = ({route}: {route: any}) => {
               borderWidth: 1,
               borderRadius: 10,
             }}>
+            <View
+              style={{
+                alignItems: 'center',
+                borderBottomWidth: 1,
+                padding: 10,
+                borderBottomColor: 'silver',
+              }}>
+              {route.params.item.profilepic ? (
+                <Image
+                  source={{uri: route.params.item.profilepic}}
+                  style={{height: 150, width: 150, borderRadius: 75}}
+                />
+              ) : (
+                <Image
+                  source={require('../assets/user.png')}
+                  style={{height: 150, width: 150, borderRadius: 75}}
+                />
+              )}
+            </View>
             <View>
               <Text style={{padding: 10, fontSize: 30, fontWeight: '800'}}>
                 Name :
