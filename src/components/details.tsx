@@ -9,9 +9,8 @@ const Details = ({route}: {route: any}) => {
       <LinearGradient colors={['#ED1E79', '#662D8C']} style={style.gradient}>
         <View
           style={{
-            padding: 50,
+            paddingTop: 30,
             display: 'flex',
-            justifyContent: 'center',
             alignItems: 'center',
           }}>
           <Text style={{fontSize: 50, color: 'blue'}}>Details</Text>
@@ -19,7 +18,7 @@ const Details = ({route}: {route: any}) => {
         <View style={{margin: 10}}>
           <View
             style={{
-              padding: 25,
+              padding: 20,
               display: 'flex',
               flexDirection: 'column',
               marginTop: 40,
@@ -30,7 +29,7 @@ const Details = ({route}: {route: any}) => {
               style={{
                 alignItems: 'center',
                 borderBottomWidth: 1,
-                padding: 10,
+                paddingBottom: 10,
                 borderBottomColor: 'silver',
               }}>
               {route.params.item.profilepic ? (

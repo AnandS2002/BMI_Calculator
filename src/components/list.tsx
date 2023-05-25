@@ -56,6 +56,7 @@ const List = ({navigation}: {navigation: any}) => {
               flexDirection: 'row',
               justifyContent: 'space-around',
               padding: 20,
+              paddingLeft: 40,
             }}>
             <Text
               style={{
@@ -72,7 +73,6 @@ const List = ({navigation}: {navigation: any}) => {
                 color: 'orange',
               }}>
               BMI
-              {'         '}
             </Text>
           </View>
           <SafeAreaView
@@ -85,14 +85,25 @@ const List = ({navigation}: {navigation: any}) => {
                   onPress={() => showDetails({item, navigation})}>
                   <View
                     style={{
-                      margin: 5,
+                      marginVertical: 5,
                       display: 'flex',
                       flexDirection: 'row',
                       justifyContent: 'space-around',
                       backgroundColor: 'white',
                       borderRadius: 10,
+                      // width:'50%'
                     }}>
-                    <View>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'space-around',
+                        width: '35%',
+                      }}>
+                      <Image
+                        source={{uri: item.profilepic}}
+                        style={{height: 40, width: 40, borderRadius: 20}}
+                      />
                       <Text
                         style={{
                           fontSize: 20,
@@ -100,6 +111,7 @@ const List = ({navigation}: {navigation: any}) => {
                           padding: 10,
                           marginVertical: 10,
                         }}>
+                        {'\t\t\t\t\t'}
                         {item.currentUserName}
                       </Text>
                     </View>

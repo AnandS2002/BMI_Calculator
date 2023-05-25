@@ -20,7 +20,7 @@ const SignUp = ({navigation}: {navigation: any}) => {
   const [pass, getPass] = useState('');
   const [confirmpass, getConfirmPass] = useState('');
   const storeUserCredentials = async () => {
-    await AsyncStorage.clear();
+    // await AsyncStorage.clear();
     if (confirmpass === pass) {
       try {
         const existingUsers = await AsyncStorage.getItem('users');

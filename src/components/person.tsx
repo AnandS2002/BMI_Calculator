@@ -85,9 +85,10 @@ const CurrentUser = ({navigation}: {navigation: any}) => {
   return (
     <LinearGradient colors={['#ED1E79', '#662D8C']} style={{flex: 1}}>
       <KeyboardAwareScrollView style={style.body}>
-        <View
+       <View ><View
           style={{
             justifyContent: 'center',
+            // marginTop:35,
             alignItems: 'center',
           }}>
           <Image style={style.logo} source={require('../assets/Logo.png')} />
@@ -95,7 +96,8 @@ const CurrentUser = ({navigation}: {navigation: any}) => {
             <Text style={style.headertext}>BMI Calculator</Text>
           </View>
         </View>
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        </View> 
+        <View style={{justifyContent: 'center', alignItems: 'center',}}>
           <Text style={{paddingBottom: 20, fontSize: 25}}>
             Choose Profile Image
           </Text>
@@ -103,12 +105,12 @@ const CurrentUser = ({navigation}: {navigation: any}) => {
             {url ? (
               <Image
                 source={{uri: url}}
-                style={{height: 150, width: 150, borderRadius: 75}}
+                style={{height: 120, width: 120, borderRadius: 60}}
               />
             ) : (
               <Image
                 source={require('../assets/user.png')}
-                style={{height: 150, width: 150, borderRadius: 75}}
+                style={{height: 120, width: 120, borderRadius: 60}}
               />
             )}
           </View>
@@ -116,8 +118,7 @@ const CurrentUser = ({navigation}: {navigation: any}) => {
             style={{
               width: '100%',
               flexDirection: 'row',
-              justifyContent: 'space-between',
-              paddingHorizontal: 70,
+              justifyContent: 'space-around',
             }}>
             <TouchableOpacity
               style={{borderWidth: 1, borderRadius: 10}}
@@ -171,21 +172,25 @@ const style = StyleSheet.create({
     maxWidth: 107,
   },
   header: {
-    padding: 10,
+    // padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
+    
+  
   },
   headertext: {
     textAlign: 'center',
     fontSize: 20,
     fontWeight: '900',
     color: '#fff',
+    
   },
   namebox: {
     padding: 20,
     width: 400,
     display: 'flex',
     alignSelf: 'center',
+    
   },
   name: {
     display: 'flex',
@@ -197,7 +202,7 @@ const style = StyleSheet.create({
     padding: 15,
     margin: 10,
   },
-  buttonbox: {alignItems: 'center', justifyContent: 'center', padding: 20},
+  buttonbox: {alignItems: 'center', justifyContent: 'center',},
   button: {
     padding: 15,
     borderWidth: 0.5,
