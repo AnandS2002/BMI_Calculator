@@ -9,36 +9,59 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
+  Alert,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import YourApp from './data';
 const showDetails = ({item, navigation}: {item: any; navigation: any}) => {
   navigation.navigate('Details', {item});
 };
+// const deleteDetail=async({item})=>{
+// try {
+//   AsyncStorage.removeItem
+// } catch (error) {
+
+// }
+// }
 
 const List = ({navigation}: {navigation: any}) => {
   const [newList, getnewList] = useState([]);
-
+  const [refresh, toRefresh] = useState([]);
   useEffect(() => {
     async function getList() {
-      console.log('outside');
-
       const existingUsers = await AsyncStorage.getItem('userdetails');
       if (existingUsers) {
-        console.log('inside');
         const users = JSON.parse(existingUsers);
         getnewList(users);
+        toRefresh(users);
       }
     }
     getList();
-  }, []);
+  }, [refresh]);
+  const deleteDetail = async ({item}) => {
+    const existingUsers = await AsyncStorage.getItem('userdetails');
+    const users = JSON.parse(existingUsers);
+
+    const index = users.findIndex(
+      value => value.currentUserName == item.currentUserName,
+    );
+    users.splice(index, 1);
+    await AsyncStorage.setItem('userdetails', JSON.stringify(users));
+    Alert.alert('Data Deleted !!');
+
+    toRefresh(users);
+
+    // navigation.navigate(YourApp);
+  };
   return (
-    <View style={style.test}>
-      <LinearGradient colors={['#ED1E79', '#662D8C']} style={style.gradient}>
-        <View style={{padding: 10, marginBottom: 50}}>
+    // <View style={style.test}>
+    <LinearGradient colors={['#ED1E79', '#662D8C']} style={style.gradient}>
+      <View style={{padding: 10, marginBottom: 50}}>
+        <View>
           <View
             style={{
               display: 'flex',
-              flexDirection: 'row',
+              flexDirection: 'column',
               justifyContent: 'space-around',
               alignItems: 'center',
               padding: 20,
@@ -48,6 +71,9 @@ const List = ({navigation}: {navigation: any}) => {
                 fontSize: 50,
               }}>
               List
+            </Text>
+            <Text style={{color: 'yellow', padding: 10}}>
+              (Long press to Remove data)
             </Text>
           </View>
           <View
@@ -75,65 +101,72 @@ const List = ({navigation}: {navigation: any}) => {
               BMI
             </Text>
           </View>
-          <SafeAreaView
-            style={{borderWidth: 1, borderRadius: 10, borderColor: 'silver'}}>
-            <FlatList
-              style={style.item}
-              data={newList}
-              renderItem={({item}) => (
-                <TouchableOpacity
-                  onPress={() => showDetails({item, navigation})}>
+        </View>
+        <SafeAreaView
+          style={{
+            maxHeight: '70%',
+            borderWidth: 1,
+            borderRadius: 10,
+            borderColor: 'silver',
+            display: 'flex',
+          }}>
+          <FlatList
+            style={style.item}
+            data={newList}
+            renderItem={({item}) => (
+              <TouchableOpacity
+                onPress={() => showDetails({item, navigation})}
+                onLongPress={() => deleteDetail({item})}>
+                <View
+                  style={{
+                    marginVertical: 5,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-around',
+                    backgroundColor: 'white',
+                    borderRadius: 10,
+                  }}>
                   <View
                     style={{
-                      marginVertical: 5,
-                      display: 'flex',
                       flexDirection: 'row',
+                      alignItems: 'center',
                       justifyContent: 'space-around',
-                      backgroundColor: 'white',
-                      borderRadius: 10,
-                      // width:'50%'
+                      width: '35%',
                     }}>
-                    <View
+                    <Image
+                      source={{uri: item.profilepic}}
+                      style={{height: 40, width: 40, borderRadius: 20}}
+                    />
+                    <Text
                       style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'space-around',
-                        width: '35%',
+                        fontSize: 20,
+                        color: 'black',
+                        padding: 10,
+                        marginVertical: 10,
                       }}>
-                      <Image
-                        source={{uri: item.profilepic}}
-                        style={{height: 40, width: 40, borderRadius: 20}}
-                      />
-                      <Text
-                        style={{
-                          fontSize: 20,
-                          color: 'black',
-                          padding: 10,
-                          marginVertical: 10,
-                        }}>
-                        {'\t\t\t\t\t'}
-                        {item.currentUserName}
-                      </Text>
-                    </View>
-                    <View>
-                      <Text
-                        style={{
-                          fontSize: 20,
-                          color: 'black',
-                          padding: 10,
-                          marginVertical: 10,
-                        }}>
-                        {item.bmi}
-                      </Text>
-                    </View>
+                      {'\t\t\t\t\t'}
+                      {item.currentUserName}
+                    </Text>
                   </View>
-                </TouchableOpacity>
-              )}
-            />
-          </SafeAreaView>
-        </View>
-      </LinearGradient>
-    </View>
+                  <View>
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        color: 'black',
+                        padding: 10,
+                        marginVertical: 10,
+                      }}>
+                      {item.bmi}
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            )}
+          />
+        </SafeAreaView>
+      </View>
+    </LinearGradient>
+    // </View>
   );
 };
 const style = StyleSheet.create({

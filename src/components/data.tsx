@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useDispatch} from 'react-redux';
+import {update} from '../redux/slice';
 import {
   Button,
   FlatList,
@@ -45,6 +47,8 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
   const [height, getHeight] = useState('');
   const [weight, getWeight] = useState('');
   const [gender, setGender] = useState('');
+  const dispatch = useDispatch();
+
   var bmi;
 
   const simpleAlert = () => {
@@ -57,7 +61,6 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
         const value = await AsyncStorage.getItem('username');
         const value2 = await AsyncStorage.getItem('password');
         if (value !== null) {
-          console.log('Retrieved data: ', value);
           setUsername(value);
           getPassWord(value2);
         }
@@ -68,13 +71,11 @@ const YourApp = ({route, navigation}: {route: any; navigation: any}) => {
     retrieveData();
   }, []);
 
-  console.log(password);
   async function calculate() {
-    console.log(gender);
     const w = parseInt(weight);
     const h = parseInt(height);
     bmi = (w / ((h / 100) * (h / 100))).toFixed(5);
-    console.log(bmi);
+    dispatch(update(bmi));
     try {
       let list = [];
       var currentusers = await AsyncStorage.getItem('userdetails');

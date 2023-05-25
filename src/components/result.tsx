@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Text, Image, Pressable} from 'react-native';
-import YourApp from './data';
 import LinearGradient from 'react-native-linear-gradient';
+import {useSelector} from 'react-redux'
+import type { RootState } from '../redux/store';
 function displayy(bmi) {
   if (bmi < 18) {
     return (
@@ -84,7 +85,8 @@ function displayy(bmi) {
   }
 }
 const Result = ({route}: {route: any}) => {
-  const [bmi, getBmi] = useState(route.params.bmi);
+  // const [bmi, getBmi] = useState(route.params.bmi);
+  const bmi=useSelector((state:RootState)=>state.bmi.value)
   return (
     <View style={{flex: 1}}>
       <LinearGradient colors={['#ED1E79', '#662D8C']} style={style.gradient}>

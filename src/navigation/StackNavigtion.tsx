@@ -18,7 +18,7 @@ export const MainStackNavigation = () => {
         headerShown: false,
       }}
       initialRouteName="Login">
-        <Stack.Screen name='SignUp' component={LoginStackNavigation}/>
+      <Stack.Screen name='SignUp' component={LoginStackNavigation}/>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="CurrentUser" component={CurrentUser} />
       <Stack.Screen name="Data" component={YourApp} />
