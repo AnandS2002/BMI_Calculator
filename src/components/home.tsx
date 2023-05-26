@@ -56,7 +56,7 @@ const HomePage = () => {
             }}>
             We're here to help you understand and track your Body Mass Index
             (BMI) for better health and wellness. BMI is a measure that assesses
-            // your body composition based on your weight and height.
+             your body composition based on your weight and height.
             {/* {data.body} */}
             {'\n\n'}
           </Text>

@@ -16,13 +16,6 @@ import YourApp from './data';
 const showDetails = ({item, navigation}: {item: any; navigation: any}) => {
   navigation.navigate('Details', {item});
 };
-// const deleteDetail=async({item})=>{
-// try {
-//   AsyncStorage.removeItem
-// } catch (error) {
-
-// }
-// }
 
 const List = ({navigation}: {navigation: any}) => {
   const [newList, getnewList] = useState([]);
@@ -127,16 +120,19 @@ const List = ({navigation}: {navigation: any}) => {
                     borderRadius: 10,
                   }}>
                   <View
+                    style={{justifyContent: 'center', alignItems: 'center'}}>
+                    <Image
+                      source={{uri: item.profilepic}}
+                      style={{height: 40, width: 40, borderRadius: 20}}
+                    />
+                  </View>
+                  <View
                     style={{
                       flexDirection: 'row',
                       alignItems: 'center',
                       justifyContent: 'space-around',
                       width: '35%',
                     }}>
-                    <Image
-                      source={{uri: item.profilepic}}
-                      style={{height: 40, width: 40, borderRadius: 20}}
-                    />
                     <Text
                       style={{
                         fontSize: 20,
@@ -144,7 +140,7 @@ const List = ({navigation}: {navigation: any}) => {
                         padding: 10,
                         marginVertical: 10,
                       }}>
-                      {'\t\t\t\t\t'}
+                      {/* {'\t\t\t\t\t'} */}
                       {item.currentUserName}
                     </Text>
                   </View>
