@@ -6,13 +6,9 @@ import {fetchData} from '../services/apicalls';
 import { TextInput } from 'react-native-gesture-handler';
 
 const HomePage = () => {
-  // const [data, getData] = useState(null);
-  // const [id,getId]=useState(0)
-  // const fetchAPI = async () => {
-  //   const resp = await fetchData(id);
-  //   getData(resp);
-  //   console.log(resp);
-  // };
+  const [data, getData] = useState(null);
+  const [id,getId]=useState(Number)
+  
   return (
     <LinearGradient colors={['#ED1E79', '#662D8C']} style={{flex: 1}}>
       <ScrollView>
@@ -21,8 +17,7 @@ const HomePage = () => {
             <Image
               style={{
                 maxHeight: 50,
-                maxWidth: 107,
-                marginTop: 20,
+                maxWidth: 107
               }}
               source={require('../assets/Logo.png')}
             />
@@ -44,7 +39,7 @@ const HomePage = () => {
             </View>
           </View>
         </View>
-        {/* <TextInput placeholder='enter the id '  onChangeText={(getId)}/>
+        {/* <TextInput  onChangeText={value=>getId(parseInt(value))}/>
         <Button title='response' onPress={fetchAPI}/> */}
         <View style={{flex: 1.5, padding: 30}}>
           <Text
