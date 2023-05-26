@@ -1,9 +1,18 @@
-import React from 'react';
-import {Text, View, Image, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, Image, ScrollView, Button} from 'react-native';
 import 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
+import {fetchData} from '../services/apicalls';
+import { TextInput } from 'react-native-gesture-handler';
 
 const HomePage = () => {
+  // const [data, getData] = useState(null);
+  // const [id,getId]=useState(0)
+  // const fetchAPI = async () => {
+  //   const resp = await fetchData(id);
+  //   getData(resp);
+  //   console.log(resp);
+  // };
   return (
     <LinearGradient colors={['#ED1E79', '#662D8C']} style={{flex: 1}}>
       <ScrollView>
@@ -35,6 +44,8 @@ const HomePage = () => {
             </View>
           </View>
         </View>
+        {/* <TextInput placeholder='enter the id '  onChangeText={(getId)}/>
+        <Button title='response' onPress={fetchAPI}/> */}
         <View style={{flex: 1.5, padding: 30}}>
           <Text
             style={{
@@ -45,7 +56,8 @@ const HomePage = () => {
             }}>
             We're here to help you understand and track your Body Mass Index
             (BMI) for better health and wellness. BMI is a measure that assesses
-            your body composition based on your weight and height.
+            // your body composition based on your weight and height.
+            {/* {data.body} */}
             {'\n\n'}
           </Text>
           <Text

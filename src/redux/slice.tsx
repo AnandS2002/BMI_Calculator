@@ -9,7 +9,7 @@ export const bmiSlice= createSlice({
   name:'bmi',
   initialState,
   reducers:{
-    update:(state,action)=>{state.value=action.payload ,console.log(action.payload)}
+    update:(state,action)=>{state.value=action.payload}
     
   }
 })
